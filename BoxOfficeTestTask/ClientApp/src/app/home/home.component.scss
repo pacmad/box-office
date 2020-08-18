@@ -1,0 +1,15 @@
+.shows {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.show-card {
+    
+    margin: 10px;
+}
+
+.show-card:hover {
+    background-color: honeydew;
+    cursor: pointer;
+}

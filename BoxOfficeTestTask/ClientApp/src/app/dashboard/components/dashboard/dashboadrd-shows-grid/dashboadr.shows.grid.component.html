@@ -1,0 +1,28 @@
+<div class="button-container">
+    <button mat-raised-button color="primary" type="button" routerLink="/dashboard/show">Add</button>
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="minAge">
+        <th mat-header-cell *matHeaderCellDef> Age </th>
+        <td mat-cell *matCellDef="let element"> {{element.minAge}} + </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+        <th class="table-row-delete" mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element"> <button mat-raised-button>Delete</button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row routerLink="/dashboard/show/{{row.id}}" *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

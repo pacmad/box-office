@@ -1,0 +1,31 @@
+<div class="login-card">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Please Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form>
+                <mat-form-field class="form-input">
+                    <mat-label>Login</mat-label>
+                    <input matInput [formControl]="f.login" type="email" placeholder="Ex. pat@example.com" autocomplete="off">
+                    <mat-error *ngIf="f.login.errors && f.login.errors.email && !f.login.errors.required">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="f.login.errors && f.login.errors.required">
+                        Login is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-input">
+                    <mat-label>Password</mat-label>
+                    <input matInput [formControl]="f.password" type="password">
+                    <mat-error *ngIf="f.password.errors && f.password.errors.required">
+                        Login is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" (click)="submitForm($event)">Login</button>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

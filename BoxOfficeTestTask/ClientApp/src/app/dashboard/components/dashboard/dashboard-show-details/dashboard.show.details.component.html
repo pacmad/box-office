@@ -1,0 +1,68 @@
+<div class="buttons-container">
+    <button type="button" mat-raised-button routerLink="/dashboard">Cancel</button>
+    <button type="button" mat-raised-button color="primary" (click)="submitForm($event)">Save</button>
+</div>
+<div>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Show detail</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="form">
+                <mat-form-field class="form-input">
+                    <mat-label>Name</mat-label>
+                    <input matInput [formControl]="f.name" type="text" autocomplete="off" />
+                    <mat-error *ngIf="f.name.errors && f.name.errors.required">
+                        Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-input">
+                    <mat-label>Desctiption</mat-label>
+                    <textarea matInput [formControl]="f.description" autocomplete="off"></textarea>
+                    <mat-error *ngIf="f.description.errors && f.description.errors.required">
+                        Description is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-input">
+                    <mat-label>Duration</mat-label>
+                    <input matInput [formControl]="f.durationInMinutes" type="number" autocomplete="off" />
+                    <mat-error *ngIf="f.durationInMinutes.errors && f.durationInMinutes.errors.required">
+                        Duration is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-input">
+                    <mat-label>Age</mat-label>
+                    <input matInput [formControl]="f.minAge" type="number" autocomplete="off" />
+                    <mat-error *ngIf="f.minAge.errors && f.minAge.errors.required">
+                        Age is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <div>
+                    <label>Sessions</label>
+                    <div formArrayName="sessions"
+                        *ngFor="let sessions of sessionsFormArray.controls;let sessionIndex = index;">
+                        <div [formGroupName]="sessionIndex">
+                            <mat-form-field class="form-input-session">
+                                <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+                                    formControlName="startTime">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <ngx-mat-datetime-picker #picker showSpinners="false">
+                                </ngx-mat-datetime-picker>
+                            </mat-form-field>
+                            <mat-form-field class="form-input-session">
+                                <mat-label>Tickets amount</mat-label>
+                                <input matInput formControlName="maxTickets" type="number" autocomplete="off" />
+                               
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <button type="button" (click)="addSession()" mat-raised-button>Add session</button>
+                </div>
+
+
+            </form>
+
+        </mat-card-content>
+    </mat-card>
+</div>
